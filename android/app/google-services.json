@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "744657973255",
+    "project_id": "vichaar-dfaf4",
+    "storage_bucket": "vichaar-dfaf4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:744657973255:android:c1251cc8d499165ebb3aa2",
+        "android_client_info": {
+          "package_name": "com.vichaar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "744657973255-uncgvt3bdkroti55kvp474fa2k74q4ka.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjlggPQ6j7qk-eEy6Cocr2fC7MRJhCPOc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "744657973255-uncgvt3bdkroti55kvp474fa2k74q4ka.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

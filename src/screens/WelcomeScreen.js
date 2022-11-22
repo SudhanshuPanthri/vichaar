@@ -31,7 +31,7 @@ const WelcomeScreen = ({navigation}) => {
           }}>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => navigation.navigate('HomeScreen')}>
+            onPress={() => navigation.navigate('SignupScreen')}>
             <Text style={{color: '#000', fontSize: 16, fontWeight: '500'}}>
               Get Started
             </Text>
@@ -46,7 +46,8 @@ const WelcomeScreen = ({navigation}) => {
                 fontSize: 16,
                 textDecorationLine: 'underline',
                 fontWeight: '500',
-              }}>
+              }}
+              onPress={() => navigation.navigate('LoginScreen')}>
               Log In
             </Text>
           </View>

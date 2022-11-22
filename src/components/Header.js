@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, Image, Pressable, Alert} from 'react-native';
 
 const Header = () => {
   return (
@@ -20,7 +20,15 @@ const Header = () => {
         }}>
         Messages
       </Text>
-      <Text>logo</Text>
+      <Pressable
+        onPress={() =>
+          Alert.alert('Logout', 'Are you sure you want to logout ?', [
+            {text: 'Yes', onPress: () => alert('Logged out Successfully')},
+            {text: 'No', onPress: () => alert('Cancelled')},
+          ])
+        }>
+        <Image source={require('../assets/user.png')} height={40} width={40} />
+      </Pressable>
     </View>
   );
 };

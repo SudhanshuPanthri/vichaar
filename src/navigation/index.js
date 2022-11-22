@@ -12,7 +12,7 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initalRouteName="WelcomeScreen"
+        initalRouteName="HomeScreen"
         screenOptions={{
           headerShown: false,
         }}>

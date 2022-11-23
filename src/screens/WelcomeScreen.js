@@ -15,8 +15,6 @@ const WelcomeScreen = ({navigation}) => {
       <Image
         source={require('../assets/welcomeScreenbg.jpg')}
         style={{height: '100%', width: '100%', zIndex: 10}}
-        defaultSource='Photo by <a href="https://unsplash.com/@pawel_czerwinski?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Pawel Czerwinski</a> on <a href="https://unsplash.com/s/photos/minimal-pattern?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-  '
       />
       <View style={styles.textContainer}>
         <Text style={styles.text}>Secure.</Text>

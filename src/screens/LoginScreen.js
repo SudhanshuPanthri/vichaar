@@ -7,6 +7,7 @@ import {
   TextInput,
   TouchableOpacity,
   StatusBar,
+  KeyboardAvoidingView,
 } from 'react-native';
 
 const LoginScreen = ({navigation}) => {
@@ -19,7 +20,6 @@ const LoginScreen = ({navigation}) => {
   };
 
   const handleLogin = () => {
-    console.log('Button clicked');
     if (!email) {
       alert('Please enter email');
     }
@@ -31,12 +31,18 @@ const LoginScreen = ({navigation}) => {
   };
 
   return (
-    <View style={styles.parent}>
+    <KeyboardAvoidingView style={styles.parent}>
       <StatusBar translucent backgroundColor={'transparent'} />
       <View style={styles.logoContainer}>
         <Image
           source={require('../assets/logo.png')}
           style={{height: 40, width: 80, tintColor: 'black'}}
+        />
+      </View>
+      <View>
+        <Image
+          source={require('../assets/martina-people-communicate-in-a-group-chat.png')}
+          style={{height: 280, width: 280}}
         />
       </View>
       <View style={styles.inputWrapper}>
@@ -100,7 +106,7 @@ const LoginScreen = ({navigation}) => {
           Sign Up
         </Text>
       </TouchableOpacity>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 
@@ -126,7 +132,7 @@ const styles = StyleSheet.create({
   },
   input: {
     marginVertical: 10,
-    borderWidth: 2,
+    borderWidth: 1,
     borderRadius: 8,
     padding: 5,
   },

@@ -1,36 +1,46 @@
 import React from 'react';
-import {View, Text, Image, Pressable, Alert} from 'react-native';
+import {View, Image, StyleSheet, TouchableOpacity} from 'react-native';
 
 const Header = () => {
   return (
-    <View
-      style={{
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginTop: 40,
-      }}>
-      <Text
+    <View style={styles.container}>
+      <Image
+        source={require('../assets/chizuru.jpg')}
         style={{
-          fontSize: 28,
-          color: 'black',
-          fontWeight: '700',
-          letterSpacing: 1,
-        }}>
-        Messages
-      </Text>
-      <Pressable
-        onPress={() =>
-          Alert.alert('Logout', 'Are you sure you want to logout ?', [
-            {text: 'Yes', onPress: () => alert('Logged out Successfully')},
-            {text: 'No', onPress: () => alert('Cancelled')},
-          ])
-        }>
-        <Image source={require('../assets/user.png')} height={40} width={40} />
-      </Pressable>
+          height: 40,
+          width: 40,
+          borderRadius: 50,
+          marginLeft: 10,
+        }}
+      />
+      <View>
+        {/*<Text style={{fontWeight: '500', fontSize: 16, color: 'black'}}>*/}
+        {/*  Messages*/}
+        {/*</Text>*/}
+        <Image
+          source={require('../assets/logo.png')}
+          style={{height: 30, width: 60, tintColor: 'black'}}
+        />
+      </View>
+      <TouchableOpacity style={{flexDirection: 'row'}}>
+        <Image
+          source={require('../assets/logout.png')}
+          style={{height: 25, width: 25, marginRight: 10}}
+        />
+      </TouchableOpacity>
     </View>
   );
 };
 
 export default Header;
+
+const styles = StyleSheet.create({
+  container: {
+    // flex: 1,
+    height: 80,
+    marginVertical: 20,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+});

@@ -1,5 +1,8 @@
-import {initializeApp} from 'firebase/app';
-import firebase from 'firebase/compat';
+// import {initializeApp} from 'firebase/app';
+import firebase from '@react-native-firebase/app';
+import firestore from '@react-native-firebase/firestore';
+import auth from '@react-native-firebase/auth';
+import database from '@react-native-firebase/database';
 const firebaseConfig = {
   apiKey: 'AIzaSyAw_JdzQOBJ6ESWR7iJqGtlmoUq4KbIBLQ',
   authDomain: 'vichaar-dfaf4.firebaseapp.com',
@@ -9,15 +12,8 @@ const firebaseConfig = {
   appId: '1:744657973255:web:97b768230d065466bb3aa2',
 };
 
-let app;
-
-if (firebase.apps.length === 0) {
-  app = initializeApp(firebaseConfig);
-} else {
-  app = firebase.app();
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
 }
 
-const db = app.firestore();
-const auth = firebase.auth();
-
-export {db, auth};
+export {firebase, firestore, auth, database};

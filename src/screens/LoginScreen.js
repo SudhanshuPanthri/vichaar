@@ -1,14 +1,15 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
-  View,
-  Text,
-  StyleSheet,
   Image,
+  KeyboardAvoidingView,
+  StatusBar,
+  StyleSheet,
+  Text,
   TextInput,
   TouchableOpacity,
-  StatusBar,
-  KeyboardAvoidingView,
+  View,
 } from 'react-native';
+import {firebase} from '../firebase/config';
 
 const LoginScreen = ({navigation}) => {
   const [email, setEmail] = useState('');
@@ -29,6 +30,17 @@ const LoginScreen = ({navigation}) => {
       console.log(JSON.stringify(credentials));
     }
   };
+
+  useEffect(() => {
+    return firebase.auth().onAuthStateChanged(authUser => {
+      if (authUser) {
+        navigation.navigate('HomeScreen');
+        console.log(authUser);
+      } else {
+        navigation.navigate('SignupScreen');
+      }
+    });
+  }, []);
 
   return (
     <KeyboardAvoidingView style={styles.parent}>

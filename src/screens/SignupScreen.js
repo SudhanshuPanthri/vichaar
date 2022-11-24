@@ -8,7 +8,9 @@ import {
   TouchableOpacity,
   StatusBar,
   KeyboardAvoidingView,
+  // Alert,
 } from 'react-native';
+import {firebase, auth} from '../firebase/config';
 
 const SignupScreen = ({navigation}) => {
   const [name, setName] = useState('');
@@ -23,7 +25,7 @@ const SignupScreen = ({navigation}) => {
     confirmPassword,
   };
 
-  const handleLogin = () => {
+  const handleSignup = () => {
     if (!name) {
       alert('Please enter a name');
     }
@@ -36,7 +38,26 @@ const SignupScreen = ({navigation}) => {
     if (password !== confirmPassword) {
       alert('Passwords did not match');
     } else {
-      console.log(JSON.stringify(credentials));
+      auth()
+        .createUserWithEmailAndPassword(email, password)
+        .then(userCredentials => {
+          if (userCredentials?.user.uid) {
+            const userRef = firebase.firestore().collection('userData');
+            userRef
+              .add({
+                name: name,
+                email: email,
+                password: password,
+                confirmPassword: confirmPassword,
+                uid: userCredentials?.user.uid,
+              })
+              .then(() => {
+                alert('Account created successfully :D');
+                navigation.replace('HomeScreen');
+              })
+              .catch(error => alert(error.message));
+          }
+        });
     }
   };
 
@@ -122,7 +143,7 @@ const SignupScreen = ({navigation}) => {
           alignItems: 'center',
           backgroundColor: 'black',
         }}
-        onPress={() => handleLogin()}>
+        onPress={() => handleSignup()}>
         <Text style={{color: 'whitesmoke', fontSize: 16, fontWeight: '500'}}>
           Sign Up
         </Text>

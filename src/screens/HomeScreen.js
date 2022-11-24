@@ -1,20 +1,30 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {
+  View,
+  Text,
+  SafeAreaView,
+  StyleSheet,
+  StatusBar,
+  FlatList,
+} from 'react-native';
 import Header from '../components/Header';
+import UserMessage from '../components/UserMessage';
+import {data} from '../data';
 
 const HomeScreen = () => {
   return (
-    <View>
+    <SafeAreaView style={styles.parent}>
+      <StatusBar backgroundColor={'white'} barStyle={'dark-content'} />
       <View style={styles.headerWrapper}>
         <Header />
       </View>
       <View style={styles.contentWrapper}>
-        <Text>Content</Text>
+        <FlatList
+          data={data}
+          renderItem={item => <UserMessage data={item} />}
+        />
       </View>
-      <View style={styles.footer}>
-        <Text>Footer</Text>
-      </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -22,19 +32,17 @@ export default HomeScreen;
 
 const styles = StyleSheet.create({
   parent: {
-    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'white',
   },
   headerWrapper: {
-    // marginVertical: 40,
-    borderWidth: 1,
-    height: '15%',
-    padding: 10,
+    width: '100%',
+    height: '10%',
+    marginVertical: 20,
   },
   contentWrapper: {
-    height: '75%',
-  },
-  footer: {
-    height: '10%',
-    borderWidth: 1,
+    height: '85%',
+    width: '100%',
   },
 });

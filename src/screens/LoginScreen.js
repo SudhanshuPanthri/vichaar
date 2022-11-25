@@ -35,7 +35,6 @@ const LoginScreen = ({navigation}) => {
     return firebase.auth().onAuthStateChanged(authUser => {
       if (authUser) {
         navigation.navigate('HomeScreen');
-        console.log(authUser);
       } else {
         navigation.navigate('SignupScreen');
       }

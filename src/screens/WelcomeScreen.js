@@ -7,7 +7,6 @@ import {
   StatusBar,
   TouchableOpacity,
 } from 'react-native';
-
 const WelcomeScreen = ({navigation}) => {
   return (
     <View style={styles.container}>

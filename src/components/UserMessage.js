@@ -1,9 +1,12 @@
 import React from 'react';
 import {TouchableOpacity, View, Text, Image, StyleSheet} from 'react-native';
 
-const UserMessage = ({data}) => {
+const UserMessage = ({data, navigation}) => {
+  // console.log(data.item.messages);
   return (
-    <TouchableOpacity style={styles.parent}>
+    <TouchableOpacity
+      style={styles.parent}
+      onPress={() => navigation.navigate('MessageScreen', data.item.messages)}>
       <View
         style={{
           width: '15%',

@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   View,
-  Text,
   SafeAreaView,
   StyleSheet,
   StatusBar,
@@ -11,7 +10,7 @@ import Header from '../components/Header';
 import UserMessage from '../components/UserMessage';
 import {data} from '../data';
 
-const HomeScreen = () => {
+const HomeScreen = ({navigation}) => {
   return (
     <SafeAreaView style={styles.parent}>
       <StatusBar backgroundColor={'white'} barStyle={'dark-content'} />
@@ -21,7 +20,9 @@ const HomeScreen = () => {
       <View style={styles.contentWrapper}>
         <FlatList
           data={data}
-          renderItem={item => <UserMessage data={item} />}
+          renderItem={item => (
+            <UserMessage data={item} navigation={navigation} />
+          )}
         />
       </View>
     </SafeAreaView>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -8,11 +8,13 @@ import {
   Image,
   TouchableOpacity,
   FlatList,
-  ScrollView,
+  TextInput,
 } from 'react-native';
 import Message from '../components/Message';
+import messages from '../messages';
 
 const MessageScreen = ({route, navigation}) => {
+  const [icon, setIcon] = useState(false);
   const chat = route.params;
   console.log(chat);
   return (
@@ -43,12 +45,70 @@ const MessageScreen = ({route, navigation}) => {
           Sudhanshu Panthri
         </Text>
       </View>
-      {/*<ScrollView>*/}
-      {/*    {chat.map((item)=>(*/}
-      {/*        <Message message={item}/>*/}
-      {/*    )}*/}
-      {/*</ScrollView>*/}
-      <FlatList data={chat} renderItem={item => <Message message={item} />} />
+      <FlatList
+        data={messages.messages}
+        renderItem={({item}) => <Message message={item} />}
+        inverted={true}
+        showsVerticalScrollIndicator={false}
+      />
+      <View
+        style={{
+          padding: 5,
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          width: '100%',
+          marginBottom: 10,
+        }}>
+        <View style={{width: '85%'}}>
+          <TextInput
+            placeholder={'Enter message'}
+            style={{
+              backgroundColor: '#FAF9F1',
+              borderRadius: 14,
+              padding: 10,
+              fontSize: 16,
+            }}
+            placeholderTextColor={'black'}
+            onChangeText={text => {
+              setIcon(true);
+            }}
+          />
+        </View>
+        {icon ? (
+          <TouchableOpacity
+            style={{
+              backgroundColor: '#3777f0',
+              borderRadius: 50,
+              padding: 2,
+              height: 40,
+              width: 40,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Image
+              source={require('../assets/icons8-send-50.png')}
+              style={{height: 25, width: 25, tintColor: 'white'}}
+            />
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity
+            style={{
+              backgroundColor: '#3777f0',
+              borderRadius: 50,
+              padding: 2,
+              height: 40,
+              width: 40,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Image
+              source={require('../assets/icons8-plus-50.png')}
+              style={{height: 30, width: 30, tintColor: 'white'}}
+            />
+          </TouchableOpacity>
+        )}
+      </View>
     </SafeAreaView>
   );
 };

@@ -3,21 +3,21 @@ import {View, Text, StyleSheet} from 'react-native';
 
 const myId = 'u1';
 
-const Message = message => {
-  console.log(message);
-  const isMe = true;
-  // message.user.id === myId
+const Message = ({message}) => {
+  const isMe = message.user.id === myId;
 
   return (
     <View
       style={[
         styles.parent,
         {
-          backgroundColor: isMe ? 'grey' : '#3777f0',
+          backgroundColor: isMe ? '#d3d3d3' : '#3777f0',
           marginLeft: isMe ? 'auto' : 10,
         },
       ]}>
-      <Text style={{color: isMe ? 'black' : 'white'}}>{message}</Text>
+      <Text style={{color: isMe ? 'black' : 'white', fontSize: 16}}>
+        {message.content}
+      </Text>
     </View>
   );
 };

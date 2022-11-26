@@ -8,26 +8,6 @@ export const data = [
     message: 'Yo, good for a lunch ?',
     timeStamp: '11:44 AM',
     profile: require('./assets/chizuru.jpg'),
-    messages: [
-      {
-        id: 'm1',
-        content: 'Hi',
-        createdAt: '2022-10-10T12:45:00.000Z',
-        user: {
-          id: 'u1',
-          name: 'Sofaygo',
-        },
-      },
-      {
-        id: 'm2',
-        content: 'sup?',
-        createdAt: '2022-10-10T12:46:00.000Z',
-        user: {
-          id: 'u2',
-          name: 'Sudhanshu Panthri',
-        },
-      },
-    ],
   },
   {
     id: 2,

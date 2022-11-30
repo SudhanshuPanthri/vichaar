@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {
+  ActivityIndicator,
   Image,
   KeyboardAvoidingView,
   StatusBar,
@@ -9,38 +10,27 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {firebase} from '../firebase/config';
+import {auth} from '../firebase/config';
 
 const LoginScreen = ({navigation}) => {
+  // const [user, setUser] = useState(null);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [spinner, setSpinner] = useState(false);
 
   const credentials = {
     email,
     password,
   };
 
-  const handleLogin = () => {
-    if (!email) {
-      alert('Please enter email');
-    }
-    if (!password) {
-      alert('Please enter password');
-    } else {
-      console.log(JSON.stringify(credentials));
-    }
+  const handleLogin = async () => {
+    await auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(userCredentials => {
+        const user = userCredentials.user;
+        navigation.navigate('HomeScreen', user);
+      });
   };
-
-  useEffect(() => {
-    return firebase.auth().onAuthStateChanged(authUser => {
-      if (authUser) {
-        navigation.navigate('HomeScreen');
-        console.log(authUser);
-      } else {
-        navigation.navigate('SignupScreen');
-      }
-    });
-  }, []);
 
   return (
     <KeyboardAvoidingView style={styles.parent}>
@@ -51,6 +41,7 @@ const LoginScreen = ({navigation}) => {
           style={{height: 40, width: 80, tintColor: 'black'}}
         />
       </View>
+      {/*{spinner && <ActivityIndicator size="large" />}*/}
       <View>
         <Image
           source={require('../assets/martina-people-communicate-in-a-group-chat.png')}

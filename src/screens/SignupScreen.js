@@ -25,37 +25,25 @@ const SignupScreen = ({navigation}) => {
     confirmPassword,
   };
 
-  const handleSignup = () => {
-    if (!name) {
-      alert('Please enter a name');
-    }
-    if (!email) {
-      alert('Please enter email');
-    }
-    if (!password) {
-      alert('Please enter password');
-    }
+  const handleSignup = async () => {
     if (password !== confirmPassword) {
-      alert('Passwords did not match');
+      alert("Password doesn't match");
     } else {
-      auth()
+      await auth()
         .createUserWithEmailAndPassword(email, password)
         .then(userCredentials => {
           if (userCredentials?.user.uid) {
-            const userRef = firebase.firestore().collection('userData');
-            userRef
-              .add({
-                name: name,
-                email: email,
-                password: password,
-                confirmPassword: confirmPassword,
+            firebase
+              .firestore()
+              .collection('UserData')
+              .doc(auth().currentUser.uid)
+              .set({
+                name,
+                email,
+                password,
+                confirmPassword,
                 uid: userCredentials?.user.uid,
-              })
-              .then(() => {
-                alert('Account created successfully :D');
-                navigation.replace('HomeScreen');
-              })
-              .catch(error => alert(error.message));
+              });
           }
         });
     }

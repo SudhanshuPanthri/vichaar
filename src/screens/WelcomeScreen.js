@@ -15,9 +15,10 @@ const WelcomeScreen = ({navigation}) => {
     auth().onAuthStateChanged(user => {
       if (user) {
         setUserLogged(user);
-        navigation.navigate('HomeScreen');
+        navigation.replace('HomeScreen');
       } else {
         setUserLogged(null);
+        navigation.replace('LoginScreen');
       }
     });
   };

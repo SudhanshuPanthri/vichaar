@@ -66,4 +66,11 @@ export const data = [
     timeStamp: '08:12 PM',
     profile: require('./assets/martina-man-in-a-browser-window.png'),
   },
+  {
+    id: 10,
+    userName: 'hehe',
+    message: 'Yo, good for a lunch ?',
+    timeStamp: '08:12 PM',
+    profile: require('./assets/martina-man-in-a-browser-window.png'),
+  },
 ];

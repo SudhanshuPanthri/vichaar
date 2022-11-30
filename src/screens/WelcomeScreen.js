@@ -18,6 +18,7 @@ const WelcomeScreen = ({navigation}) => {
         navigation.replace('HomeScreen');
       } else {
         setUserLogged(null);
+        navigation.replace('LoginScreen');
       }
     });
   };

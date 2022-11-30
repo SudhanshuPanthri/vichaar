@@ -36,6 +36,19 @@ const ProfileScreen = ({navigation}) => {
       <View style={styles.info}>
         <Text>Hi, I'm using vichaar</Text>
       </View>
+      <TouchableOpacity
+        style={{
+          position: 'absolute',
+          top: 70,
+          borderColor: 'white',
+          left: 10,
+        }}
+        onPress={() => navigation.goBack()}>
+        <Image
+          source={require('../assets/icons8-back-90.png')}
+          style={{height: 30, width: 30, tintColor: 'white'}}
+        />
+      </TouchableOpacity>
       <View
         style={{
           bottom: 0,

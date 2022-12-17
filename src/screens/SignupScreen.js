@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   StatusBar,
   KeyboardAvoidingView,
-  // Alert,
+  Alert,
 } from 'react-native';
 import {firebase, auth} from '../firebase/config';
 
@@ -18,16 +18,9 @@ const SignupScreen = ({navigation}) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  const credentials = {
-    name,
-    email,
-    password,
-    confirmPassword,
-  };
-
   const handleSignup = async () => {
     if (password !== confirmPassword) {
-      alert("Password doesn't match");
+      Alert.alert("Password doesn't match");
     } else {
       await auth()
         .createUserWithEmailAndPassword(email, password)
@@ -43,6 +36,7 @@ const SignupScreen = ({navigation}) => {
                 password,
                 confirmPassword,
                 uid: userCredentials?.user.uid,
+                joined: Date(Date.now()),
               });
           }
         });

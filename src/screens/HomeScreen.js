@@ -5,27 +5,62 @@ import {
   StyleSheet,
   StatusBar,
   FlatList,
+  Image,
 } from 'react-native';
 import Header from '../components/Header';
 import UserMessage from '../components/UserMessage';
-import {data} from '../data';
-import {auth} from '../firebase/config';
+import {auth, firebase} from '../firebase/config';
 
 const HomeScreen = ({navigation}) => {
+  const [user, setUser] = useState(null);
+  const [allUsers, setAllUsers] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const getCurrentUser = async () => {
+    setLoading(true);
+    await auth().onAuthStateChanged(authUser => {
+      if (authUser) {
+        setUser(authUser);
+      }
+    });
+    const db = await firebase.firestore();
+    const usersRef = await db.collection('UserData');
+    await usersRef.get().then(snapshot => {
+      setAllUsers(snapshot.docs);
+      setLoading(false);
+    });
+  };
+
+  useEffect(() => {
+    getCurrentUser();
+  }, [user]);
+
   return (
     <SafeAreaView style={styles.parent}>
       <StatusBar backgroundColor={'white'} barStyle={'dark-content'} />
-      <View style={styles.headerWrapper}>
-        <Header navigation={navigation} />
-      </View>
-      <View style={styles.contentWrapper}>
-        <FlatList
-          data={data}
-          renderItem={item => (
-            <UserMessage data={item} navigation={navigation} />
-          )}
-        />
-      </View>
+      {!loading ? (
+        <>
+          <View style={styles.headerWrapper}>
+            <Header navigation={navigation} />
+          </View>
+          <View style={styles.contentWrapper}>
+            <FlatList
+              data={allUsers}
+              renderItem={item => (
+                <UserMessage data={item} navigation={navigation} />
+              )}
+              showsVerticalScrollIndicator={false}
+            />
+          </View>
+        </>
+      ) : (
+        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+          <Image
+            source={require('../assets/icons8-loading-circle.gif')}
+            style={{height: 40, width: 40}}
+          />
+        </View>
+      )}
     </SafeAreaView>
   );
 };

@@ -2,7 +2,6 @@ import React from 'react';
 import {TouchableOpacity, View, Text, Image, StyleSheet} from 'react-native';
 
 const UserMessage = ({data, navigation}) => {
-  // console.log(data.item.messages);
   return (
     <TouchableOpacity
       style={styles.parent}
@@ -15,7 +14,7 @@ const UserMessage = ({data, navigation}) => {
           alignItems: 'center',
         }}>
         <Image
-          source={data.item.profile}
+          source={require('../assets/chizuru.jpg')}
           style={{
             borderRadius: 50,
             height: 45,
@@ -31,9 +30,9 @@ const UserMessage = ({data, navigation}) => {
             alignItems: 'center',
           }}>
           <Text style={{fontWeight: '600', fontSize: 18, color: 'black'}}>
-            {data.item.userName}
+            {data.item._data.name}
           </Text>
-          <Text>{data.item.timeStamp}</Text>
+          <Text>12:00 AM</Text>
         </View>
         <View>
           <Text numberOfLines={1}>{data.item.message}</Text>
